@@ -14,6 +14,8 @@ clearButton.addEventListener(
     singleClickDisplay.textContent = defaultValue;
     doubleClickDisplay.textContent = defaultValue;
     touchStartDisplay.textContent = defaultValue;
+    touchMoveDisplay.textContent = defaultValue;
+    touchEndDisplay.textContent = defaultValue;
   },
   false
 );
