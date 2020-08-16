@@ -43,8 +43,7 @@ const touchMoveHandler = (event) => {
 };
 
 const touchEndHandler = (event) => {
-  const numFingers = event.touches.length;
-  touchEndDisplay.textContent = "touch end with " + numFingers + " fingers";
+  touchEndDisplay.textContent = "touch end";
 };
 
 document.body.addEventListener("click", singleClickHandler, false);
