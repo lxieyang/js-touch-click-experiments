@@ -12,7 +12,7 @@
       margin: 0;
     }
 
-    #display {
+    .display {
       font-size: 1.8rem;
       user-select: none;
     }
@@ -24,8 +24,11 @@
   <h1>Please click or touch the document.</h1>
   <p>This document is rigged with javascript event listeners for "click", "dbclick" and "touch".</p>
 
-  <p id="display">nothing happened yet</p>
+  <button id="clear-button">Clear</button>
 
+  <p class="display">Single click: <span id="single-click-display">nothing happened yet</span></p>
+  <p class="display">Double click: <span id="double-click-display">nothing happened yet</span></p>
+  <p class="display">Touch start: <span id="touch-start-display">nothing happened yet</span></p>
 
   <script src="index.js"></script>
 </body>
