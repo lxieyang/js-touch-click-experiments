@@ -5,9 +5,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>js-touch-click-experiments</title>
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #display {
+      font-size: 1.8rem;
+      user-select: none;
+    }
+  </style>
 </head>
 
 <body>
+
+  <h1>Please click or touch the document.</h1>
+  <p>This document is rigged with javascript event listeners for "click", "dbclick" and "touch".</p>
+
+  <p id="display">nothing happened yet</p>
 
 
   <script src="index.js"></script>
