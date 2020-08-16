@@ -2,6 +2,7 @@ const clearButton = document.querySelector("#clear-button");
 const singleClickDisplay = document.querySelector("#single-click-display");
 const doubleClickDisplay = document.querySelector("#double-click-display");
 const touchStartDisplay = document.querySelector("#touch-start-display");
+const touchMoveDisplay = document.querySelector("#touch-move-display");
 
 // clear button logic:
 clearButton.addEventListener(
@@ -35,7 +36,7 @@ const touchStartHandler = (event) => {
 
 const touchMoveHandler = (event) => {
   const numFingers = event.touches.length;
-  touchStartDisplay.textContent = "touch move with " + numFingers + " fingers";
+  touchMoveDisplay.textContent = "touch move with " + numFingers + " fingers";
 };
 
 document.body.addEventListener("click", singleClickHandler, false);
