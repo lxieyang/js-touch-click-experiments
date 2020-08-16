@@ -33,6 +33,12 @@ const touchStartHandler = (event) => {
   touchStartDisplay.textContent = "touch start with " + numFingers + " fingers";
 };
 
+const touchMoveHandler = (event) => {
+  const numFingers = event.touches.length;
+  touchStartDisplay.textContent = "touch move with " + numFingers + " fingers";
+};
+
 document.body.addEventListener("click", singleClickHandler, false);
 document.body.addEventListener("dblclick", doubleClickHandler, false);
 document.body.addEventListener("touchstart", touchStartHandler, false);
+document.body.addEventListener("touchmove", touchMoveHandler, false);
