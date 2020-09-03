@@ -106,7 +106,6 @@ workarea.addEventListener(
 
 const printOutEvent = (eventName, eventTarget = "target") => {
   if (!showMouseMove && eventName.includes("mousemove")) return;
-
   if (!showTouchMove && eventName.includes("touchmove")) return;
 
   let item = document.createElement("DIV");
