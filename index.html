@@ -1,40 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>js-touch-click-experiments</title>
+    <style>
+      body {
+        width: 100%;
+        height: 100vh;
+        background-color: white;
+        margin: 0;
+        padding: 0;
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>js-touch-click-experiments</title>
-  <style>
-    body {
-      width: 100vw;
-      height: 100vh;
-      background-color: lightgray;
-      margin: 0;
-    }
+        display: flex;
+        flex-direction: column;
+      }
 
-    .display {
-      font-size: 1.2rem;
-      user-select: none;
-    }
-  </style>
-</head>
+      #workarea {
+        width: 100%;
+        height: 280px;
+        background-color: lightgray;
 
-<body>
+        position: relative;
 
-  <h1>Please click or touch the document.</h1>
-  <p>This document is rigged with javascript event listeners for "click", "dbclick", "touchStart", "touchMove", and
-    "touchEnd".</p>
+        flex-shrink: 0;
 
-  <button id="clear-button">Clear</button>
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-  <p class="display">Single click: <span id="single-click-display">nothing happened yet</span></p>
-  <p class="display">Double click: <span id="double-click-display">nothing happened yet</span></p>
-  <p class="display">Touch start: <span id="touch-start-display">nothing happened yet</span></p>
-  <p class="display">Touch move: <span id="touch-move-display">nothing happened yet</span></p>
-  <p class="display">Touch end: <span id="touch-end-display">nothing happened yet</span></p>
+      #target {
+        width: 50%;
+        height: 50%;
+        background-color: lightgreen;
+        border: 2px solid black;
+      }
 
-  <script src="index.js"></script>
-</body>
+      #clearButtonContainer {
+        height: 30px;
+        width: 100%;
 
+        flex-shrink: 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #display {
+        flex: 1;
+        display: flex;
+      }
+
+      .half {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .half h4 {
+        margin: 5px 0px;
+      }
+
+      .printArea {
+        width: 100%;
+        flex: 1;
+        overflow: auto;
+      }
+
+      .item {
+        margin: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- <h3>Please click or touch the gray area below:</h3> -->
+    <div id="workarea">
+      <div id="target"></div>
+    </div>
+
+    <div id="clearButtonContainer">
+      <button id="clear-button">Clear</button>
+    </div>
+
+    <div id="display">
+      <div class="half">
+        <h4>workarea (gray)</h4>
+        <div class="printArea" id="workarea-events-display">
+          <div class="item">123</div>
+        </div>
+      </div>
+      <div class="half">
+        <h4>target (green)</h4>
+        <div class="printArea" id="target-events-display">
+          <div class="item">123</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
 </html>

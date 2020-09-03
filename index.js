@@ -1,54 +1,78 @@
 const clearButton = document.querySelector("#clear-button");
-const singleClickDisplay = document.querySelector("#single-click-display");
-const doubleClickDisplay = document.querySelector("#double-click-display");
-const touchStartDisplay = document.querySelector("#touch-start-display");
-const touchMoveDisplay = document.querySelector("#touch-move-display");
-const touchEndDisplay = document.querySelector("#touch-end-display");
+const target = document.querySelector("#target");
+const workarea = document.querySelector("#workarea");
+const targetEventsDisplay = document.querySelector("#target-events-display");
+const workareaEventsDisplay = document.querySelector(
+  "#workarea-events-display"
+);
 
 // clear button logic:
 clearButton.addEventListener(
   "click",
   (event) => {
-    event.stopPropagation();
-    const defaultValue = "nothing happened yet";
-    singleClickDisplay.textContent = defaultValue;
-    doubleClickDisplay.textContent = defaultValue;
-    touchStartDisplay.textContent = defaultValue;
-    touchMoveDisplay.textContent = defaultValue;
-    touchEndDisplay.textContent = defaultValue;
+    targetEventsDisplay.innerHTML = "";
+    workareaEventsDisplay.innerHTML = "";
   },
   false
 );
 
-const singleClickHandler = (event) => {
-  console.log("single");
-  singleClickDisplay.textContent =
-    "single click at (" + event.clientX + ", " + event.clientY + ")";
-};
+target.addEventListener("click", () => printOutEvent("click"), false);
+target.addEventListener("dblclick", () => printOutEvent("dbclick"), false);
+target.addEventListener("mousedown", () => printOutEvent("mousedown"), false);
+target.addEventListener("mousemove", () => printOutEvent("mousemove"), false);
+target.addEventListener("mouseup", () => printOutEvent("mouseup"), false);
+target.addEventListener("touchstart", () => printOutEvent("touchstart"), false);
+target.addEventListener("touchmove", () => printOutEvent("touchmove"), false);
+target.addEventListener("touchend", () => printOutEvent("touchend"), false);
 
-const doubleClickHandler = (event) => {
-  console.log("double");
-  doubleClickDisplay.textContent =
-    "double click at (" + event.clientX + ", " + event.clientY + ")";
-};
+workarea.addEventListener(
+  "click",
+  () => printOutEvent("click", "workarea"),
+  false
+);
+workarea.addEventListener(
+  "dblclick",
+  () => printOutEvent("dbclick", "workarea"),
+  false
+);
+workarea.addEventListener(
+  "mousedown",
+  () => printOutEvent("mousedown", "workarea"),
+  false
+);
+workarea.addEventListener(
+  "mousemove",
+  () => printOutEvent("mousemove", "workarea"),
+  false
+);
+workarea.addEventListener(
+  "mouseup",
+  () => printOutEvent("mouseup", "workarea"),
+  false
+);
+workarea.addEventListener(
+  "touchstart",
+  () => printOutEvent("touchstart", "workarea"),
+  false
+);
+workarea.addEventListener(
+  "touchmove",
+  () => printOutEvent("touchmove", "workarea"),
+  false
+);
+workarea.addEventListener(
+  "touchend",
+  () => printOutEvent("touchend", "workarea"),
+  false
+);
 
-const touchStartHandler = (event) => {
-  const numFingers = event.touches.length;
-  touchStartDisplay.textContent = "touch start with " + numFingers + " fingers";
+const printOutEvent = (eventName, eventTarget = "target") => {
+  let item = document.createElement("DIV");
+  item.classList.add("item");
+  item.innerText = new Date().getTime() + " - " + eventName;
+  if (eventTarget === "target") {
+    targetEventsDisplay.prepend(item);
+  } else if (eventTarget === "workarea") {
+    workareaEventsDisplay.prepend(item);
+  }
 };
-
-const touchMoveHandler = (event) => {
-  const numFingers = event.touches.length;
-  touchMoveDisplay.textContent = "touch move with " + numFingers + " fingers";
-};
-
-const touchEndHandler = (event) => {
-  const numFingers = event.touches.length;
-  touchEndDisplay.textContent = "touch end, " + numFingers + " fingers left";
-};
-
-document.body.addEventListener("click", singleClickHandler, false);
-document.body.addEventListener("dblclick", doubleClickHandler, false);
-document.body.addEventListener("touchstart", touchStartHandler, false);
-document.body.addEventListener("touchmove", touchMoveHandler, false);
-document.body.addEventListener("touchend", touchEndHandler, false);
