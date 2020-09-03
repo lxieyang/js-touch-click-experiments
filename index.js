@@ -21,9 +21,21 @@ target.addEventListener("dblclick", () => printOutEvent("dbclick"), false);
 target.addEventListener("mousedown", () => printOutEvent("mousedown"), false);
 target.addEventListener("mousemove", () => printOutEvent("mousemove"), false);
 target.addEventListener("mouseup", () => printOutEvent("mouseup"), false);
-target.addEventListener("touchstart", () => printOutEvent("touchstart"), false);
-target.addEventListener("touchmove", () => printOutEvent("touchmove"), false);
-target.addEventListener("touchend", () => printOutEvent("touchend"), false);
+target.addEventListener(
+  "touchstart",
+  (e) => printOutEvent("touchstart (" + e.touches.length + ")", "target"),
+  false
+);
+target.addEventListener(
+  "touchmove",
+  (e) => printOutEvent("touchmove (" + e.touches.length + ")", "target"),
+  false
+);
+target.addEventListener(
+  "touchend",
+  (e) => printOutEvent("touchend (" + e.touches.length + ")", "target"),
+  false
+);
 
 workarea.addEventListener(
   "click",
@@ -52,24 +64,25 @@ workarea.addEventListener(
 );
 workarea.addEventListener(
   "touchstart",
-  () => printOutEvent("touchstart", "workarea"),
+  (e) => printOutEvent("touchstart (" + e.touches.length + ")", "workarea"),
   false
 );
 workarea.addEventListener(
   "touchmove",
-  () => printOutEvent("touchmove", "workarea"),
+  (e) => printOutEvent("touchmove (" + e.touches.length + ")", "workarea"),
   false
 );
 workarea.addEventListener(
   "touchend",
-  () => printOutEvent("touchend", "workarea"),
+  (e) => printOutEvent("touchend (" + e.touches.length + ")", "workarea"),
   false
 );
 
 const printOutEvent = (eventName, eventTarget = "target") => {
   let item = document.createElement("DIV");
   item.classList.add("item");
-  item.innerText = new Date().getTime() + " - " + eventName;
+  item.innerText =
+    new Date().getTime().toString().substring(7) + " - " + eventName;
   if (eventTarget === "target") {
     targetEventsDisplay.prepend(item);
   } else if (eventTarget === "workarea") {
