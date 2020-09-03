@@ -6,6 +6,9 @@ const workareaEventsDisplay = document.querySelector(
   "#workarea-events-display"
 );
 
+let showMouseMove = true;
+let showTouchMove = true;
+
 // clear button logic:
 clearButton.addEventListener(
   "click",
