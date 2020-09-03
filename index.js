@@ -9,6 +9,29 @@ const workareaEventsDisplay = document.querySelector(
 let showMouseMove = true;
 let showTouchMove = true;
 
+let mousemoveToggleButton = document.querySelector("#mousemove-toggle-button");
+let touchmoveToggleButton = document.querySelector("#touchmove-toggle-button");
+
+mousemoveToggleButton.addEventListener("click", (event) => {
+  if (showMouseMove) {
+    showMouseMove = false;
+    mousemoveToggleButton.innerText = "Hiding mousemove events";
+  } else {
+    showMouseMove = true;
+    mousemoveToggleButton.innerText = "Showing mousemove events";
+  }
+});
+
+touchmoveToggleButton.addEventListener("click", (event) => {
+  if (showTouchMove) {
+    showTouchMove = false;
+    touchmoveToggleButton.innerText = "Hiding touchmove events";
+  } else {
+    showTouchMove = true;
+    touchmoveToggleButton.innerText = "Showing touchmove events";
+  }
+});
+
 // clear button logic:
 clearButton.addEventListener(
   "click",
@@ -82,6 +105,10 @@ workarea.addEventListener(
 );
 
 const printOutEvent = (eventName, eventTarget = "target") => {
+  if (!showMouseMove && eventName.includes("mousemove")) return;
+
+  if (!showTouchMove && eventName.includes("touchmove")) return;
+
   let item = document.createElement("DIV");
   item.classList.add("item");
   item.innerText =
