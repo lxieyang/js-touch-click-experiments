@@ -47,6 +47,9 @@ target.addEventListener("dblclick", () => printOutEvent("dbclick"), false);
 target.addEventListener("mousedown", () => printOutEvent("mousedown"), false);
 target.addEventListener("mousemove", () => printOutEvent("mousemove"), false);
 target.addEventListener("mouseup", () => printOutEvent("mouseup"), false);
+target.addEventListener("mouseover", () => printOutEvent("mouseover"), false);
+target.addEventListener("mouseout", () => printOutEvent("mouseout"), false);
+
 target.addEventListener(
   "touchstart",
   (e) => printOutEvent("touchstart (" + e.touches.length + ")", "target"),
@@ -62,6 +65,7 @@ target.addEventListener(
   (e) => printOutEvent("touchend (" + e.touches.length + ")", "target"),
   false
 );
+
 
 workarea.addEventListener(
   "click",
@@ -88,6 +92,17 @@ workarea.addEventListener(
   () => printOutEvent("mouseup", "workarea"),
   false
 );
+
+workarea.setAttribute("tabindex", -1); // enable getting the keyboard focus: https://stackoverflow.com/questions/18928116/javascript-keydown-event-listener-is-not-working
+workarea.focus(); // give it the focus to start: https://stackoverflow.com/questions/6754275/set-keyboard-focus-to-a-div/6809236
+workarea.addEventListener(
+  "keydown",
+  (e) => printOutEvent("keydown=" + e.code, "workarea"),
+  false
+);
+
+
+
 workarea.addEventListener(
   "touchstart",
   (e) => printOutEvent("touchstart (" + e.touches.length + ")", "workarea"),
