@@ -42,7 +42,12 @@ clearButton.addEventListener(
   false
 );
 
-target.addEventListener("click", () => printOutEvent("click"), false);
+target.addEventListener("click", (e) => {
+  let notpropogate ="";
+  if (e.detail>= 3) notpropogate = " - not propogating";
+  printOutEvent("click ("+e.detail+")"+notpropogate);
+  if (e.detail>= 3) e.stopPropagation();
+}, false);
 target.addEventListener("dblclick", () => printOutEvent("dbclick"), false);
 target.addEventListener("mousedown", () => printOutEvent("mousedown"), false);
 target.addEventListener("mousemove", () => printOutEvent("mousemove"), false);
@@ -69,7 +74,14 @@ target.addEventListener(
 
 workarea.addEventListener(
   "click",
-  () => printOutEvent("click", "workarea"),
+  (e) => {
+     printOutEvent("click CAPTURING ("+e.detail+")", "workarea");
+  },
+  true //so this one gets events on way down, so workarea will be BEFORE target
+);
+workarea.addEventListener(
+  "click",
+  (e) => printOutEvent("click ("+e.detail+")", "workarea"),
   false
 );
 workarea.addEventListener(
@@ -119,6 +131,7 @@ workarea.addEventListener(
   false
 );
 
+var counter = 1;
 const printOutEvent = (eventName, eventTarget = "target") => {
   if (!showMouseMove && eventName.includes("mousemove")) return;
   if (!showTouchMove && eventName.includes("touchmove")) return;
@@ -126,7 +139,7 @@ const printOutEvent = (eventName, eventTarget = "target") => {
   let item = document.createElement("DIV");
   item.classList.add("item");
   item.innerText =
-    new Date().getTime().toString().substring(7) + " - " + eventName;
+    "" + (counter++) + ") " + new Date().getTime().toString().substring(7) + " - " + eventName;
   if (eventTarget === "target") {
     targetEventsDisplay.prepend(item);
   } else if (eventTarget === "workarea") {
